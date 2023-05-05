@@ -1,0 +1,3 @@
+C:/Users/amori/CLionProjects/Polygo/cmake-build-debug/CMakeFiles/Polygo.dir
+C:/Users/amori/CLionProjects/Polygo/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/amori/CLionProjects/Polygo/cmake-build-debug/CMakeFiles/rebuild_cache.dir

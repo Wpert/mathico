@@ -1,0 +1,17 @@
+# ninja log v5
+5772	8087	7049759771732565	CMakeFiles/Polygo.dir/buttons/textbox.cpp.obj	5a19b300944defc3
+3823	7382	7049759764652590	CMakeFiles/Polygo.dir/buttons/tbuttons.cpp.obj	fbceb3c6ab35db5b
+3734	5290	7049431206073228	sfml_try.exe	4573b09dbe5757e4
+9	4057	7049761104000727	build.ninja	3691d030ab16ba11
+15	4009	7049759730822584	CMakeFiles/Polygo.dir/polygon/polygon.cpp.obj	49d8846cb7e4027
+28	3807	7049759728522601	CMakeFiles/Polygo.dir/polygon/point.cpp.obj	ec8112f95970e36d
+4010	7277	7049759763522586	CMakeFiles/Polygo.dir/math/TMath.cpp.obj	7e791991a937756
+3	5771	7049759748402604	CMakeFiles/Polygo.dir/main.cpp.obj	793924ce95cfa57e
+8088	10113	7049759791792552	Polygo.exe	d6fe5e633144077
+61	7482	7049761212710732	CMakeFiles/Polygo.dir/polygon/point.cpp.obj	f2aa1cf284195d89
+52	7735	7049761214490764	CMakeFiles/Polygo.dir/polygon/polygon.cpp.obj	18eec76539540783
+37	10279	7049761241011343	CMakeFiles/Polygo.dir/main.cpp.obj	d929521d42592138
+7484	11944	7049761258066651	CMakeFiles/Polygo.dir/math/TMath.cpp.obj	b1252cda2dd6fa11
+7736	12547	7049761263836655	CMakeFiles/Polygo.dir/buttons/tbuttons.cpp.obj	250aa58632be534b
+10281	13163	7049761270126664	CMakeFiles/Polygo.dir/buttons/textbox.cpp.obj	cc67352ac5f355c7
+13164	15448	7049761292786641	Polygo.exe	d6fe5e633144077
