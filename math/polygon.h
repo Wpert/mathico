@@ -9,23 +9,33 @@
 #include <vector>
 #include <cmath>
 #include <utility>
+#include <concepts>
 
-class Polygon {
+namespace vmath {
+
+template<typename T>
+concept Number = std::is_arithmetic<T>::value;
+
+class Polygon : public sf::Drawable {
 public:
     class Point {
+        // собственный велосипед комплексных чисел с прилегающей им логикой
     private:
         double x_;
         double y_;
     public:
         Point();
         Point(double x, double y);
+        template<Number T>
+        Point(sf::Vector2<T> v);
+        Point(sf::Vector2f v);
         Point(Point &other) = default;
         Point(const Point &other) = default;
         ~Point() = default;
 
         [[nodiscard]] double GetX() const;
         [[nodiscard]] double GetY() const;
-        [[nodiscard]] std::pair<double, double> GetXY() const;
+        [[nodiscard]] std::pair<double, double> GetPosition() const;
 
         Point operator !() const;
 
@@ -54,16 +64,19 @@ public:
     explicit Polygon(size_t size);
     ~Polygon() = default;
 
-    [[nodiscard]] size_t Size() const;
+    [[nodiscard]] const size_t Size() const;
 
     Point& operator [] (size_t i);
-
-    void Print();
-    void Draw(sf::RenderWindow &mainWindow);
+    void ChangePosition(sf::Vector2f v);
+    void ConsolePrint();
+    // void Render(sf::RenderWindow &mainWindow);
+    // void update(sf::Event& e, sf::RenderWindow& window);
 
 private:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     std::vector<Point> vertexes_;
 };
 
+}
 
 #endif //SFML_TRY_POLYGON_H

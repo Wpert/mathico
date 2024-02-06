@@ -3,12 +3,11 @@
 
 #pragma once
 
-#include "../polygon/polygon.h"
-
+#include "polygon.h"
 #include <cmath>
 #include <iomanip>
 
-namespace math {
+namespace vmath {
     using Point = Polygon::Point;
 
     void calculate(Polygon &printable, Point core_point);
@@ -22,6 +21,13 @@ namespace math {
     Polygon makeIntPolygon(Point &point, size_t size);
 
     double calculateEpsilon(Polygon &poly);
+
+    sf::Vector2f func_1(sf::Vector2f v);
+    sf::Vector2f func_2(sf::Vector2f v);
+    sf::Vector2f func_3(sf::Vector2f v);
+    sf::Vector2f func_4(sf::Vector2f v);
+
+    double rand0_1();
 }
 
 

@@ -1,27 +1,18 @@
-#include <SFML/Graphics.hpp>
-
-#include "polygon/polygon.h"
-#include "buttons/tbuttons.h"
-#include "buttons/textbox.h"
-#include "resources/tcolors.h"
 #include <iostream>
-
-Polygon tempPoly(1);
-Polygon::Point core_point;
-
-Polygon mainPoly(1);
+#include "gui/gui.h"
+#include <cassert>
 
 std::string getDirPath() {
     std::string path(__FILE__);
+    std::cout << __FILE__ << std::endl;
     path = path.substr(0, path.rfind('/') + 1);
     return path;
 }
 
 int main() {
     sf::RenderWindow mainWindow(sf::VideoMode(1024, 600),
-                                "Polygo",
+                                "Mathico",
                                 sf::Style::Close);
-    // other settings
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     mainWindow.setFramerateLimit(60);
@@ -31,44 +22,12 @@ int main() {
     std::cout << "Dir path: " <<  dirPath << std::endl;
     basicFont.loadFromFile(dirPath + "resources/calibri.ttf");
 
-    sf::Vector2i mousePosition;
-    TextBoxContainer textboxes(basicFont);
-    ButtonContainer buttons(basicFont);
-
-    bool isWindowActive = true;
-
+    vie::TLogic mainThing(basicFont);
+    
     while (mainWindow.isOpen()) {
-        mousePosition = sf::Mouse::getPosition(mainWindow);
-        sf::Event event;
-        while (mainWindow.pollEvent(event))
-        {
-            textboxes.TakeInput(mousePosition, event);
-
-            if (event.type == sf::Event::Closed)
-                mainWindow.close();
-            if (event.type == sf::Event::MouseButtonPressed &&
-                event.mouseButton.button == sf::Mouse::Left) {
-                for (size_t buttonIndex = 0; buttonIndex < buttons.GetSize(); ++buttonIndex) {
-                    if (buttons[buttonIndex].Contains(mousePosition)) {
-                        buttons.buttonFunctions_[buttonIndex](textboxes, tempPoly, mainPoly, core_point);
-                    }
-                }
-            }
-            if (event.type == sf::Event::LostFocus) {
-                isWindowActive = false;
-            }
-            else if (event.type == sf::Event::GainedFocus) {
-                isWindowActive = true;
-            }
-        }
-
-        if (isWindowActive) {
-            mainWindow.clear(backgroundColor);
-            mainPoly.Draw(mainWindow);
-            textboxes.Render(mainWindow);
-            buttons.Render(mousePosition, mainWindow);
-            mainWindow.display();
-        }
+        mainThing.ReadInputs(mainWindow);
+        mainThing.Render(mainWindow);
     }
+    
     return 0;
 }

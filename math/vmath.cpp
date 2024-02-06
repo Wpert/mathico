@@ -1,11 +1,13 @@
-#include "TMath.h"
+#include "vmath.h"
 
-double math::euclide_distance(const Point &a, const Point &b) {
+using namespace vmath;
+
+double vmath::euclide_distance(const Point &a, const Point &b) {
     return sqrt((a.GetX() - b.GetX()) * (a.GetX() - b.GetX()) +
                 (a.GetY() - b.GetY()) * (a.GetY() - b.GetY()));
 }
 
-Polygon math::makeRegularPolygon(Point &point, size_t size) {
+Polygon vmath::makeRegularPolygon(Point &point, size_t size) {
     auto n = (double) size;
 
     Polygon reg_poly(size); // правльный n-угольник, построенный по данному отрезку
@@ -22,7 +24,7 @@ Polygon math::makeRegularPolygon(Point &point, size_t size) {
     return reg_poly;
 }
 
-Polygon math::makeIntPolygon(Point &point, size_t size) {
+Polygon vmath::makeIntPolygon(Point &point, size_t size) {
     Polygon int_poly(size); // целочисленный n-угольник
 
     // построение правильного n-угольника:
@@ -36,7 +38,7 @@ Polygon math::makeIntPolygon(Point &point, size_t size) {
     return int_poly;
 }
 
-Polygon::Point math::zerothFourierCoeff(Polygon &poly) {
+Polygon::Point vmath::zerothFourierCoeff(Polygon &poly) {
     auto n = (double) poly.Size();
 
     Point Coeff0;
@@ -48,7 +50,7 @@ Polygon::Point math::zerothFourierCoeff(Polygon &poly) {
     return Coeff0;
 }
 
-Polygon::Point math::firstFourierCoeff(Polygon &poly) {
+Polygon::Point vmath::firstFourierCoeff(Polygon &poly) {
     auto n_int = poly.Size();
     auto n = (double) n_int;
 
@@ -64,7 +66,7 @@ Polygon::Point math::firstFourierCoeff(Polygon &poly) {
     return Coeff1;
 }
 
-double math::calculateEpsilon(Polygon &poly) {
+double vmath::calculateEpsilon(Polygon &poly) {
     auto n = (double) poly.Size();
     auto n_int = poly.Size();
 
@@ -89,7 +91,7 @@ double math::calculateEpsilon(Polygon &poly) {
     return eps;
 }
 
-void math::calculate(Polygon &poly, Point point) {
+void vmath::calculate(Polygon &poly, Point point) {
     auto n_int = poly.Size();
     //построение целочисленного n-угольника:
     auto int_poly = makeIntPolygon(point, n_int);
@@ -100,15 +102,43 @@ void math::calculate(Polygon &poly, Point point) {
     std::cout << "Cordinates of new integer " << n_int << "-gon: " << std::endl;
 
     // вывод точек правильного n-угольника на экран:
-    int_poly.Print();
+    int_poly.ConsolePrint();
 
     poly = int_poly;
-    Point delta(600, 50);
-    for(size_t i = 0; i < n_int; ++i) {
-        poly[i] += delta;
-    }
 
     // вывод значения приближения n-угольника
     std::cout << std::fixed << std::setprecision(10);
     std::cout << "eps = " << eps << std::endl;
+}
+
+sf::Vector2f vmath::func_1(sf::Vector2f v) {
+    sf::Vector2f tmp;
+    tmp.x = 0;
+    tmp.y = 0.16 * v.y;
+    return tmp;
+}
+
+sf::Vector2f vmath::func_2(sf::Vector2f v) {
+    sf::Vector2f tmp;
+    tmp.x = 0.85 * v.x + 0.04 * v.y;
+    tmp.y = -0.04 * v.x + 0.85 * v.y + 1.6;
+    return tmp;
+}
+
+sf::Vector2f vmath::func_3(sf::Vector2f v) {
+    sf::Vector2f tmp;
+    tmp.x = 0.2 * v.x - 0.26 * v.y;
+    tmp.y = 0.23 * v.x + 0.22 * v.y + 1.6;
+    return tmp;
+}
+
+sf::Vector2f vmath::func_4(sf::Vector2f v) {
+    sf::Vector2f tmp;
+    tmp.x = -0.15 * v.x + 0.28 * v.y;
+    tmp.y = 0.26 * v.x + 0.24 * v.y + 0.44;
+    return tmp;
+}
+
+double vmath::rand0_1() {
+    return (double)rand() / (RAND_MAX + 1.0);
 }
