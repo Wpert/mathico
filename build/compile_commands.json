@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/main.cpp.o -c /home/vpert/gitproj/mathico/main.cpp",
+  "file": "/home/vpert/gitproj/mathico/main.cpp",
+  "output": "CMakeFiles/Mathico.dir/main.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/gui/gui.cpp.o -c /home/vpert/gitproj/mathico/gui/gui.cpp",
+  "file": "/home/vpert/gitproj/mathico/gui/gui.cpp",
+  "output": "CMakeFiles/Mathico.dir/gui/gui.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/gui/page/tpage.cpp.o -c /home/vpert/gitproj/mathico/gui/page/tpage.cpp",
+  "file": "/home/vpert/gitproj/mathico/gui/page/tpage.cpp",
+  "output": "CMakeFiles/Mathico.dir/gui/page/tpage.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/gui/page/buttons/tbuttons.cpp.o -c /home/vpert/gitproj/mathico/gui/page/buttons/tbuttons.cpp",
+  "file": "/home/vpert/gitproj/mathico/gui/page/buttons/tbuttons.cpp",
+  "output": "CMakeFiles/Mathico.dir/gui/page/buttons/tbuttons.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/gui/page/textboxes/textbox.cpp.o -c /home/vpert/gitproj/mathico/gui/page/textboxes/textbox.cpp",
+  "file": "/home/vpert/gitproj/mathico/gui/page/textboxes/textbox.cpp",
+  "output": "CMakeFiles/Mathico.dir/gui/page/textboxes/textbox.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/gui/page/slider/slider.cpp.o -c /home/vpert/gitproj/mathico/gui/page/slider/slider.cpp",
+  "file": "/home/vpert/gitproj/mathico/gui/page/slider/slider.cpp",
+  "output": "CMakeFiles/Mathico.dir/gui/page/slider/slider.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/math/polygon.cpp.o -c /home/vpert/gitproj/mathico/math/polygon.cpp",
+  "file": "/home/vpert/gitproj/mathico/math/polygon.cpp",
+  "output": "CMakeFiles/Mathico.dir/math/polygon.cpp.o"
+},
+{
+  "directory": "/home/vpert/gitproj/mathico/build",
+  "command": "/usr/bin/g++  -I/home/vpert/gitproj/mathico/C:/cpp/sfml/SFML-2.5.1/include -g -std=gnu++20 -o CMakeFiles/Mathico.dir/math/vmath.cpp.o -c /home/vpert/gitproj/mathico/math/vmath.cpp",
+  "file": "/home/vpert/gitproj/mathico/math/vmath.cpp",
+  "output": "CMakeFiles/Mathico.dir/math/vmath.cpp.o"
+}
+]
