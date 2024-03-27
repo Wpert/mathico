@@ -1,5 +1,5 @@
-#ifndef SFML_TRY_POLYGON_H
-#define SFML_TRY_POLYGON_H
+#ifndef POLYGON_HPP
+#define POLYGON_HPP
 
 #pragma once
 
@@ -79,4 +79,4 @@ private:
 
 }
 
-#endif //SFML_TRY_POLYGON_H
+#endif

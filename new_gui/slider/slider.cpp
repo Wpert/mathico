@@ -1,5 +1,4 @@
-#include "slider.h"
-
+#include "slider.hpp"
 using namespace vie;
 
 void Slider::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -10,7 +9,7 @@ void Slider::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 Slider::Slider(sf::Vector2f startPos, sf::Vector2f endPos,
         double from, double to, int count,
-        sf::Font &buttonFont, size_t number)
+        const sf::Font &buttonFont)
         : from_(from), diff_(to - from) {
 
     circle_.setRadius(8);
@@ -27,7 +26,11 @@ Slider::Slider(sf::Vector2f startPos, sf::Vector2f endPos,
     text_.setString(std::to_string((int)from));
     text_.setPosition(startPos.x, startPos.y + 15);
 
-    enumNumber_ = number;
+    std::cout << "Slider has constructed" << std::endl;
+}
+
+Slider::~Slider() {
+    std::cout << "Slider has destructed" << std::endl;
 }
 
 bool Slider::Contains(sf::Vector2i& mousePosition) {
@@ -58,7 +61,9 @@ void Slider::update(sf::Event& e, sf::RenderWindow& window) {
     }
 
     sf::Vector2f circlePos = circle_.getPosition();
-    sf::Vector2f finalPosition({std::min(std::max((float) mousePosition.x - circle_.getRadius(), line_[0].position.x), line_[1].position.x - 2 * circle_.getRadius()), circlePos.y});
+    sf::Vector2f finalPosition({std::min(std::max((float) mousePosition.x - circle_.getRadius(),
+                                                  line_[0].position.x), line_[1].position.x - 2 * circle_.getRadius()),
+                                        circlePos.y});
     switch (this->state_)
     {
     case SliderState::ACTIVE:

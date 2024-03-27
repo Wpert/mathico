@@ -1,13 +1,12 @@
-#ifndef SFML_TRY_TMATH_H
-#define SFML_TRY_TMATH_H
+#ifndef VMATH_HPP
+#define VMATH_HPP
 
-#pragma once
-
-#include "polygon.h"
+#include "polygon.hpp"
 #include <cmath>
 #include <iomanip>
 
 namespace vmath {
+
     using Point = Polygon::Point;
 
     void calculate(Polygon &printable, Point core_point);
@@ -31,4 +30,4 @@ namespace vmath {
 }
 
 
-#endif //SFML_TRY_TMATH_H
+#endif

@@ -1,6 +1,4 @@
-#include <iostream>
-#include "gui/gui.h"
-#include <cassert>
+#include "new_gui/gui.hpp"
 
 std::string getDirPath() {
     std::string path(__FILE__);
@@ -10,24 +8,20 @@ std::string getDirPath() {
 }
 
 int main() {
-    sf::RenderWindow mainWindow(sf::VideoMode(1024, 600),
+    sf::RenderWindow window(sf::VideoMode(1024, 600),
                                 "Mathico",
                                 sf::Style::Close);
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    mainWindow.setFramerateLimit(60);
+    window.setFramerateLimit(60);
 
     std::string dirPath = getDirPath();
     sf::Font basicFont;
     std::cout << "Dir path: " <<  dirPath << std::endl;
     basicFont.loadFromFile(dirPath + "resources/calibri.ttf");
 
-    vie::TLogic mainThing(basicFont);
-    
-    while (mainWindow.isOpen()) {
-        mainThing.ReadInputs(mainWindow);
-        mainThing.Render(mainWindow);
-    }
-    
+    vie::ApplicationLogic lgck(basicFont, window);
+    lgck.Process(window);
+
     return 0;
 }

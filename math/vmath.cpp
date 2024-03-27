@@ -1,4 +1,4 @@
-#include "vmath.h"
+#include "vmath.hpp"
 
 using namespace vmath;
 
