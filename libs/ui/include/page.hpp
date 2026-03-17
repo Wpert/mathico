@@ -1,10 +1,11 @@
 #ifndef PAGE_HPP
 #define PAGE_HPP
 
-#include "../utility.hpp"
-#include "../button/button.hpp"
-#include "../slider/slider.hpp"
-#include "../textbox/textbox.hpp"
+#include "./button.hpp"
+#include "./slider.hpp"
+#include "./textbox.hpp"
+
+#include <iostream>
 
 namespace vie {
 
@@ -27,7 +28,7 @@ public:
         units_.push_back(element);
     }
 
-    void TakeInput(sf::Event &event, sf::RenderWindow& window) {
+    void TakeInput(const Event &event, sf::RenderWindow& window) {
         for (auto& element : units_)
             element->update(event, window);
     }

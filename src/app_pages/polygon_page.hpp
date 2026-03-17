@@ -1,7 +1,7 @@
 #ifndef POLYGON_PAGE_HPP
 #define POLYGON_PAGE_HPP
 
-#include "fern_page.hpp"
+#include <logic.hpp>
 
 namespace vie {
 

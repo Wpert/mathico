@@ -1,8 +1,9 @@
 #ifndef TEXTBOX_HPP
 #define TEXTBOX_HPP
 
-#include "../button/button.hpp"
-#include <cstdlib>
+#include <SFML/Graphics.hpp>
+
+#include "../clickable.hpp"
 
 namespace vie {
 
@@ -18,11 +19,11 @@ public:
     size_t enumNumber_;
 
     TextBox(sf::Vector2f position, sf::Vector2f size,
-            const sf::Font &buttonFont, const std::string& descrText);
+            const sf::Font &textboxFont, const std::string& descrText);
     ~TextBox();
 
     bool Contains(sf::Vector2i& mousePosition);
-    void update(sf::Event& e, sf::RenderWindow& window) override;
+    void update(const Event& e, sf::RenderWindow& window) override;
     std::string GetString();
 };
 

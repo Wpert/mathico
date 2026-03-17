@@ -1,17 +1,12 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
-#include "../utility.hpp"
-#include <cstdlib>
+#include <SFML/Graphics.hpp>
+
+#include "../clickable.hpp"
 
 namespace vie
 {
-
-class Clickable : public sf::Drawable {
-public:
-    virtual ~Clickable() {}
-    virtual void update(sf::Event& e, sf::RenderWindow& window) = 0;
-};
 
 namespace ButtonState {
     enum {
@@ -38,7 +33,7 @@ public:
     virtual bool CallFunc() const = 0;
 
     bool Contains(sf::Vector2i& mousePosition) const;
-    void update(sf::Event& e, sf::RenderWindow& window) override;
+    void update(const Event& e, sf::RenderWindow& window) override;
 };
 
 }

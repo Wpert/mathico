@@ -1,9 +1,11 @@
 #ifndef LOGIC_HPP
 #define LOGIC_HPP
 
-#include "../page/page.hpp"
+#include <page.hpp>
 
-// there's the end of library i think
+#include <SFML/Graphics.hpp>
+
+#include <memory>
 
 namespace vie {
 
@@ -15,6 +17,8 @@ enum class page_type {
     save
 };
 
+// i have to get rid of raw pointers (!!!)
+
 class Logic {
 protected:
     page_type pageEnum_;
@@ -24,8 +28,8 @@ protected:
 public:
     sf::Image editableImage_;
     sf::Texture loadingTexture_;
-    sf::Sprite renderingSprite_;
-    sf::RenderTexture polygonTexture_;
+    std::optional<sf::Sprite> renderingSprite_;
+    std::optional<sf::RenderTexture> polygonTexture_;
 
     const sf::Font& font_;
     Logic(const sf::Font& font, sf::RenderWindow &window, PageManager* page)

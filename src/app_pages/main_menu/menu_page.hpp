@@ -1,7 +1,8 @@
 #ifndef MENU_PAGE_HPP
 #define MENU_PAGE_HPP
 
-#include "logic.hpp"
+// #include <logic.hpp>
+#include "../logic.hpp"
 
 namespace vie {
 
@@ -20,14 +21,15 @@ public:
         // buttons_.AddUnit(new ExitButton());
     }
 
-    void RenderUnits(sf::RenderWindow& window) {
+    void RenderUnits(sf::RenderWindow& window) override {
         if (!isMainWindowActive_)
             return;
         buttons_.Render(window);
         textboxes_.Render(window);
         sliders_.Render(window);
         window.draw(area_);
-        window.draw(p_logic_->renderingSprite_);
+        // be careful about sprite thing, we dont have it
+        // window.draw(p_logic_->renderingSprite_.value());
     }
 };
 

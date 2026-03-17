@@ -1,9 +1,9 @@
 #ifndef SLIDER_HPP
 #define SLIDER_HPP
 
-#include "../button/button.hpp"
-#include <cstdlib>
-#include <cmath>
+#include <SFML/Graphics.hpp>
+
+#include "../clickable.hpp"
 
 namespace vie {
 
@@ -33,7 +33,7 @@ public:
            const sf::Font &buttonFont);
     ~Slider();
     bool Contains(sf::Vector2i& mousePosition);
-    void update(sf::Event& e, sf::RenderWindow& window);
+    void update(const Event& e, sf::RenderWindow& window) override;
     double GetNumber();
 };
 

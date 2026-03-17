@@ -1,7 +1,7 @@
 #ifndef SIERPINSKI_PAGE_HPP
 #define SIERPINSKI_PAGE_HPP
 
-#include "menu_page.hpp"
+#include <logic.hpp>
 
 namespace vie {
 

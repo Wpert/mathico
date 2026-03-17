@@ -1,0 +1,9 @@
+[requires]
+sfml/3.0.2
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout

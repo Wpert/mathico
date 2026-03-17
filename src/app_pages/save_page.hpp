@@ -1,7 +1,7 @@
 #ifndef SAVE_PAGE_HPP
 #define SAVE_PAGE_HPP
 
-#include "sierpinski_page.hpp"
+#include <logic.hpp>
 
 namespace vie {
 

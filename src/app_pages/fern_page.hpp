@@ -1,8 +1,8 @@
 #ifndef FERN_PAGE_HPP
 #define FERN_PAGE_HPP
 
-#include "save_page.hpp"
-#include "../../math/vmath.hpp"
+#include <logic.hpp>
+#include <vmath.hpp>
 
 namespace vie {
 
