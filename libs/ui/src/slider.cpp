@@ -58,8 +58,11 @@ void Slider::update(const Event& e, sf::RenderWindow& window) {
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
     bool isMouseOnButton = this->Contains(mousePosition);
 
-    if (e->is<sf::Event::MouseButtonPressed>() && 
-        e->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Left) {
+    auto* mouseBtnPressed = e->getIf<sf::Event::MouseButtonPressed>();
+    if (e->is<sf::Event::MouseButtonPressed>() &&
+        mouseBtnPressed != nullptr && 
+        mouseBtnPressed->button == sf::Mouse::Button::Left
+    ) {
         if (isMouseOnButton) {
             state_ = SliderState::ACTIVE;
         }
@@ -67,9 +70,12 @@ void Slider::update(const Event& e, sf::RenderWindow& window) {
             state_ = SliderState::OFFLINE;
         }
     }
-
-    if (e->is<sf::Event::MouseButtonReleased>() && 
-        e->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Left) {
+    
+    auto* mouseBtnReleased = e->getIf<sf::Event::MouseButtonReleased>();
+    if (e->is<sf::Event::MouseButtonReleased>() &&
+        mouseBtnReleased != nullptr &&
+        mouseBtnReleased->button == sf::Mouse::Button::Left
+    ) {
         state_ = SliderState::OFFLINE;
     }
 

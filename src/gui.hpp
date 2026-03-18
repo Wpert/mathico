@@ -2,6 +2,7 @@
 #define GUI_HPP
 
 #include "app_pages/main_menu/menu_page.hpp"
+#include "app_pages/sierpinski/sierpinski_page.hpp"
 
 namespace vie {
 
@@ -41,9 +42,11 @@ class ApplicationLogic : public Logic {
         case page_type::main:
             currentPage_.reset(new MenuPage(this->font_, this));
             break;
-        // case page_type::sierpinski:
-        //     currentPage_.reset(new SierpinskiPage(this->font_, this));
-        //     break;
+        case page_type::sierpinski: {
+            std::cout << "fell into switch page -> sierp" << std::endl;
+            currentPage_.reset(new SierpinskiPage(this->font_, this));
+            break;
+        }
         // case page_type::barn_fern:
         //     currentPage_.reset(new FernPage(this->font_, this));
         //     break;

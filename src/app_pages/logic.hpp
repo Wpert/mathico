@@ -28,12 +28,21 @@ protected:
 public:
     sf::Image editableImage_;
     sf::Texture loadingTexture_;
-    std::optional<sf::Sprite> renderingSprite_;
-    std::optional<sf::RenderTexture> polygonTexture_;
+    sf::Sprite renderingSprite_;
+    sf::RenderTexture polygonTexture_;
 
     const sf::Font& font_;
-    Logic(const sf::Font& font, sf::RenderWindow &window, PageManager* page)
-            : font_(font), window_(&window), currentPage_(page) {
+    Logic(
+        const sf::Font& font,
+        sf::RenderWindow &window,
+        PageManager* page
+    ) : font_(font),
+        window_(&window),
+        currentPage_(page),
+        editableImage_({1, 1}),
+        loadingTexture_(editableImage_),
+        renderingSprite_(loadingTexture_)
+    {
         std::cout << "Logic has constructed" << std::endl;
     }
     virtual ~Logic() {}

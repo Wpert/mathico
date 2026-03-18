@@ -53,7 +53,8 @@ void Button::update(const Event& e, sf::RenderWindow& window) {
     auto* mouseBtnPressed = e->getIf<sf::Event::MouseButtonPressed>();
     if (e->is<sf::Event::MouseButtonPressed>() &&
         mouseBtnPressed != nullptr && 
-        mouseBtnPressed->button == sf::Mouse::Button::Left) {
+        mouseBtnPressed->button == sf::Mouse::Button::Left
+    ) {
         if (isMouseOnButton) {
             state_ = ButtonState::CLICKED;
         }
@@ -65,7 +66,8 @@ void Button::update(const Event& e, sf::RenderWindow& window) {
     auto* mouseBtnReleased = e->getIf<sf::Event::MouseButtonReleased>();
     if (e->is<sf::Event::MouseButtonReleased>() &&
         mouseBtnReleased != nullptr && 
-        mouseBtnReleased->button == sf::Mouse::Button::Left) {
+        mouseBtnReleased->button == sf::Mouse::Button::Left
+    ) {
         if (isMouseOnButton) {
             state_ = ButtonState::ACTIVE;
         }
