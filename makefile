@@ -3,16 +3,16 @@
 BUILD_DIR = build
 TARGET = $(BUILD_DIR)/src/App
 
-all: configure
+all: configure-release
 	@cmake --build $(BUILD_DIR) --parallel
 
 run: all
-	@./$(TARGET)
+	@SPDLOG_LEVEL=info && ./$(TARGET)
 
 debug: all
 	@gdb $(TARGET)
 
-configure:
+configure-release:
 	@if [ ! -d $(BUILD_DIR) ]; then \
 		conan install . --output-folder=$(BUILD_DIR) --build=missing; \
 		cmake -S . -B $(BUILD_DIR) \
@@ -21,6 +21,7 @@ configure:
 	elif [ CMakeLists.txt -nt $(BUILD_DIR)/CMakeCache.txt ]; then \
 		cmake -S . -B $(BUILD_DIR); \
 	fi
+	@
 
 clean:
 	@rm -rf $(BUILD_DIR)

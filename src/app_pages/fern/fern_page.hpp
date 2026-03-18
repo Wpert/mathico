@@ -1,5 +1,6 @@
-#ifndef FERN_PAGE_HPP
-#define FERN_PAGE_HPP
+#pragma once
+
+#include <spdlog/spdlog.h>
 
 #include "../logic.hpp"
 #include <vmath.hpp>
@@ -11,6 +12,7 @@ private:
     Logic* p_logic_;
 
     void drawFern() {
+        spdlog::info("fern page is generating");
         sf::Color vertexesAreaColor(15, 12, 11, 255);
         uint width = 500;
         uint height = 500;
@@ -47,16 +49,15 @@ private:
 
         auto [len, wid] = p_logic_->loadingTexture_.getSize();
 
-        std::cout << "texture len: " << len << " width: " << wid << std::endl;
-        std::cout << "sprite got set the texture" << std::endl;
+        spdlog::info("fern texture len: {}, width: {}", len, wid);
 
         bool isLoadedImage = p_logic_->loadingTexture_.loadFromImage(img);
         if (!isLoadedImage) {
-            std::cout << "cannot load image" << std::endl;
+            spdlog::error("Couldn't load texture from image");
         }
         p_logic_->renderingSprite_ = sf::Sprite(p_logic_->loadingTexture_);
         p_logic_->renderingSprite_.setPosition({220, 10});
-        std::cout << "I've drow a fractal with N = " << N << " points" << std::endl;
+        spdlog::info("Fern fractal had been drow with N = {}  points", N);
     }
 
     class ShowFernButton : public Button {
@@ -66,11 +67,11 @@ private:
             const sf::Font &buttonFont, FernPage* objPtr)
             : Button(position, size, text, buttonFont), p_obj_(objPtr)
         {
-            std::cout << "ShowFernButton has constructed" << std::endl;
+            spdlog::debug("ShowFernButton has constructed");
         }
 
         ~ShowFernButton() {
-            std::cout << "~ShowFernButton has destructed" << std::endl;
+            spdlog::debug("~ShowFernButton has destructed");
         }
         bool CallFunc() const override {
             p_obj_->drawFern();
@@ -100,5 +101,3 @@ public:
 };
 
 }
-
-#endif

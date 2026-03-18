@@ -24,12 +24,9 @@ void WorkArea::SetColor(sf::Color clr) {
 }
 
 
-PageManager::PageManager() : area_({220, 10}, {794, 580}) {
-    std::cout << "PageManager has constructed" << std::endl;
-};
-PageManager::~PageManager() {
-    std::cout << "PageManager has destructed" << std::endl;
-}
+PageManager::PageManager() : area_({220, 10}, {794, 580}) { };
+
+PageManager::~PageManager() { }
 
 void PageManager::TakeInputs(sf::RenderWindow& window) {
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);

@@ -33,12 +33,9 @@ TextBox::TextBox(
     this->inputText_ = "";
 
     this->focus_ = false;
-    std::cout << "Textbox has constructed" << std::endl;
 }
 
-TextBox::~TextBox() {
-    std::cout << "Textbox has destructed" << std::endl;
-}
+TextBox::~TextBox() { }
 
 bool TextBox::Contains(sf::Vector2i &mousePosition) {
     auto tempPosition = static_cast<sf::Vector2f>(mousePosition);

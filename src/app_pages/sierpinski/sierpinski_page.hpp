@@ -1,5 +1,6 @@
-#ifndef SIERPINSKI_PAGE_HPP
-#define SIERPINSKI_PAGE_HPP
+#pragma once
+
+#include <spdlog/spdlog.h>
 
 #include <logic.hpp>
 
@@ -42,11 +43,11 @@ private:
         // loadingTexture_.loadFromMemory(imageBuffer.data(), imageBuffer.size(), sf::IntRect());
         bool isLoadedImage = p_logic_->loadingTexture_.loadFromImage(img);
         if (!isLoadedImage) {
-            std::cout << "cannot load image" << std::endl;
+            spdlog::error("Couldn't load image from texture");
         }
         p_logic_->renderingSprite_ = sf::Sprite(p_logic_->loadingTexture_);
         p_logic_->renderingSprite_.setPosition({220, 10});
-        std::cout << "I've drow a fractal" << std::endl;
+        spdlog::info("sierpinski fractal had been drow");
     }
 
     class ShowTriangleButton : public Button {
@@ -56,11 +57,11 @@ private:
             const sf::Font &buttonFont, SierpinskiPage* objPtr)
             : Button(position, size, text, buttonFont), p_obj_(objPtr)
         {
-            std::cout << "ShowTriangleButton has constructed" << std::endl;
+            spdlog::debug("ShowTriangleButton has constructed");
         }
 
         ~ShowTriangleButton() {
-            std::cout << "ShowTriangleButton has destructed" << std::endl;
+            spdlog::debug("ShowTriangleButton has destructed");
         }
         bool CallFunc() const override {
             p_obj_->drawTriangle();
@@ -70,7 +71,8 @@ private:
 
 public:
     SierpinskiPage(const sf::Font& font, Logic* p_logic) : PageManager(), p_logic_(p_logic) {
-        std::cout << "started to construct page" << std::endl;
+        spdlog::debug("Sierpinski page is constructing");
+
         sf::Vector2f position({10, 10});
         sf::Vector2f buttonSize(200, 30);
         buttons_.AddUnit(new ShowTriangleButton(position, buttonSize, "Draw triangle", font, this));
@@ -78,6 +80,8 @@ public:
 
         sliders_.AddUnit(new vie::Slider({10, 45}, {210, 45}, 0, 10000, 25, font));
     }
+
+    ~SierpinskiPage() = default;
 
     void RenderUnits(sf::RenderWindow& window) {
         if (!isMainWindowActive_)
@@ -91,5 +95,3 @@ public:
 };
 
 }
-
-#endif

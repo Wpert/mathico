@@ -1,5 +1,6 @@
-#ifndef SAVE_PAGE_HPP
-#define SAVE_PAGE_HPP
+#pragma once
+
+#include <spdlog/spdlog.h>
 
 #include <logic.hpp>
 
@@ -15,24 +16,42 @@ private:
         SavePage* p_obj_;
         Logic* p_logic_;
     public:
-        SaveImageButton(sf::Vector2f position, sf::Vector2f size, std::string text,
-            const sf::Font &buttonFont, SavePage* objPtr, Logic* logic)
-            : Button(position, size, text, buttonFont), p_obj_(objPtr), p_logic_(logic)
+        SaveImageButton(
+            sf::Vector2f position,
+            sf::Vector2f size,
+            std::string text,
+            const sf::Font &buttonFont,
+            SavePage* objPtr,
+            Logic* logic
+        ) : Button(position, size, text, buttonFont),
+            p_obj_(objPtr),
+            p_logic_(logic)
         {
-            std::cout << "SaveImageButton has constructed" << std::endl;
+            spdlog::debug("SaveImageButton has constructed");
         }
 
         ~SaveImageButton() {
-            std::cout << "SaveImageButton has destructed" << std::endl;
+            spdlog::debug("SaveImageButton has destructed");
         }
+
         bool CallFunc() const override {
             std::string path(__FILE__);
-            std::cout << __FILE__ << std::endl;
+            spdlog::debug("path to save_page.hpp: {}", path);
+
             path = path.substr(0, path.rfind("new_gui/")); // ../folder/gui
             path = path.substr(0, path.rfind('/') + 1); // ../folder/
 
             std::string filename = p_obj_->textboxes_[0].GetString();
-            p_logic_->editableImage_.saveToFile(path + "../../../pictures/" + filename);
+            std::string fullImagePath = path + "../../../pictures/" + filename;
+
+            bool isSavedImage = p_logic_->editableImage_.saveToFile(fullImagePath);
+            if (!isSavedImage) {
+                spdlog::error("Couldn't save image to file: {}", fullImagePath);
+            }
+            else {
+                spdlog::info("Saved image to this file: {}", fullImagePath);
+            }
+
             return false;
         }
     };
@@ -45,5 +64,3 @@ public:
 };
 
 }
-
-#endif

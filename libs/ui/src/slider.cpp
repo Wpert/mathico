@@ -36,13 +36,9 @@ Slider::Slider(
     // maybe try to set it in constructor
     text_.setString(std::to_string((int)from));
     text_.setPosition({startPos.x, startPos.y + 15});
-
-    std::cout << "Slider has constructed" << std::endl;
 }
 
-Slider::~Slider() {
-    std::cout << "Slider has destructed" << std::endl;
-}
+Slider::~Slider() { }
 
 bool Slider::Contains(sf::Vector2i& mousePosition) {
     sf::Vector2f circlePos = circle_.getPosition();

@@ -1,6 +1,8 @@
 
 find_package(SFML REQUIRED)
-# find_package(UILib REQUIRED)
+find_package(spdlog REQUIRED)
+
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}")
 
 add_executable(${PROJECT_NAME}
     main.cpp
@@ -13,6 +15,7 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE SFML::System SFML::Window SFML::Graphics
+    PRIVATE spdlog::spdlog
     PRIVATE ui_lib math_lib
 )
 

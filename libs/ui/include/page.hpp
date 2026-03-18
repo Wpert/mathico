@@ -14,14 +14,16 @@ class ClickableContainer {
     std::vector<ClickableClass*> units_;
 public:
     ClickableContainer() {
-        std::cout << "Clickable container " << this << " has constructed" << std::endl;
+        // spdlog::debug("Clickable container {} has constructed", this);
     }
+
     ~ClickableContainer() {
         for (size_t i = 0; i < this->units_.size(); ++i)
             delete units_[i];
         
         units_.clear();
-        std::cout << "Clickable container " << this << " has deleted" << std::endl;
+
+        // spdlog::debug("Clickable container {} has deleted", this);
     }
 
     void AddUnit(ClickableClass* element) {

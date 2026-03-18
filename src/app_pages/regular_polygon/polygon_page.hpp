@@ -1,8 +1,8 @@
-#ifndef POLYGON_PAGE_HPP
-#define POLYGON_PAGE_HPP
+#pragma once
+
+#include <spdlog/spdlog.h>
 
 #include <vmath.hpp>
-
 #include "../logic.hpp"
 
 namespace {
@@ -55,16 +55,22 @@ private:
     class ShowPolygonButton : public Button {
         PolygonPage* p_obj_;
     public:
-        ShowPolygonButton(sf::Vector2f position, sf::Vector2f size, std::string text,
-            const sf::Font &buttonFont, PolygonPage* objPtr)
-            : Button(position, size, text, buttonFont), p_obj_(objPtr)
+        ShowPolygonButton(
+            sf::Vector2f position,
+            sf::Vector2f size,
+            std::string text,
+            const sf::Font &buttonFont,
+            PolygonPage* objPtr
+        ) : Button(position, size, text, buttonFont),
+            p_obj_(objPtr)
         {
-            std::cout << "ShowPolygonButton has constructed" << std::endl;
+            spdlog::debug("ShowPolygonButton has constructed");
         }
 
         ~ShowPolygonButton() {
-            std::cout << "ShowPolygonButton has destructed" << std::endl;
+            spdlog::debug("ShowPolygonButton has destructed");
         }
+
         bool CallFunc() const override {
             p_obj_->drawPolygon();
             return false;
@@ -110,5 +116,3 @@ public:
 };
 
 }
-
-#endif

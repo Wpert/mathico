@@ -1,5 +1,6 @@
 [requires]
 sfml/3.0.2
+spdlog/1.17.0
 
 [generators]
 CMakeDeps

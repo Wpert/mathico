@@ -1,5 +1,6 @@
-#ifndef GUI_HPP
-#define GUI_HPP
+#pragma once
+
+#include <spdlog/spdlog.h>
 
 #include "app_pages/main_menu/menu_page.hpp"
 #include "app_pages/sierpinski/sierpinski_page.hpp"
@@ -21,10 +22,11 @@ class ApplicationLogic : public Logic {
         uint width = 500;
         uint height = 500;
         this->editableImage_ = sf::Image({width, height}, vertexesAreaColor);
-        std::cout << "ApplicationLogic constructor" << std::endl;
+
+        spdlog::debug("ApplicationLogic has constructed");
     }
     ~ApplicationLogic() {
-        std::cout << "~ApplicationLogic" << std::endl;
+        spdlog::debug("ApplicationLogic has destructed");
     }
 
     void Process(sf::RenderWindow& window) override {
@@ -39,27 +41,30 @@ class ApplicationLogic : public Logic {
     }
 
     void selectPage(page_type page) override {
-        std::cout << "---selectedPage---" << std::endl;
         switch (page)
         {
         case page_type::main: {
+            spdlog::info("Selected MenuPage");
             currentPage_.reset(new MenuPage(this->font_, this));
             break;
         }
         case page_type::sierpinski: {
-            std::cout << "fell into switch page -> sierp" << std::endl;
+            spdlog::info("Selected SierpinskiPage");
             currentPage_.reset(new SierpinskiPage(this->font_, this));
             break;
         }
         case page_type::barn_fern: {
+            spdlog::info("Selected FernPage");
             currentPage_.reset(new FernPage(this->font_, this));
             break;
         }
         case page_type::polygons: {
+            spdlog::info("Selected PolygonPage");
             currentPage_.reset(new PolygonPage(this->font_, this));
             break;
         }
         case page_type::save: {
+            spdlog::info("Selected SavePage");
             currentPage_.reset(new SavePage(this->font_, this));
             break;
         }
@@ -71,5 +76,3 @@ class ApplicationLogic : public Logic {
 };
 
 }
-
-#endif

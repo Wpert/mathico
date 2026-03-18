@@ -1,11 +1,11 @@
-#ifndef LOGIC_HPP
-#define LOGIC_HPP
-
-#include <page.hpp>
+#pragma once
 
 #include <SFML/Graphics.hpp>
+#include <spdlog/spdlog.h>
 
 #include <memory>
+
+#include <page.hpp>
 
 namespace vie {
 
@@ -43,7 +43,7 @@ public:
         loadingTexture_(editableImage_),
         renderingSprite_(loadingTexture_)
     {
-        std::cout << "Logic has constructed" << std::endl;
+        spdlog::debug("class Logic has counstructed");
     }
     virtual ~Logic() {}
 
@@ -59,11 +59,11 @@ public:
         const sf::Font &buttonFont, Logic* objPtr, page_type type)
         : Button(position, size, text, buttonFont), p_obj_(objPtr), type_(type)
     {
-        std::cout << "SelectPageButton " << text << " has constructed" << std::endl;
+        spdlog::debug("SelectPageButton {} has constructed", std::string(text_.getString()));
     }
 
     ~SelectPageButton() {
-        std::cout << "SelectPageButton " << std::string( text_.getString() ) << " has destructed" << std::endl;
+        spdlog::debug("SelectPageButton {} has destructed", std::string(text_.getString()));
     }
 
     bool CallFunc() const override {
@@ -76,5 +76,3 @@ public:
 
 
 }
-
-#endif
