@@ -48,6 +48,8 @@ private:
         
         p_logic_->renderingSprite_ = sf::Sprite(p_logic_->polygonTexture_.getTexture());
         p_logic_->renderingSprite_.setPosition({220, 10});
+
+        p_logic_->editableImage_ = p_logic_->polygonTexture_.getTexture().copyToImage();
     }
 
     class ShowPolygonButton : public Button {
