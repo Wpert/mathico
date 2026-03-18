@@ -21,5 +21,5 @@ void MenuPage::RenderUnits(sf::RenderWindow& window) {
     sliders_.Render(window);
     window.draw(area_);
     // be careful about sprite thing, we dont have it
-    // window.draw(p_logic_->renderingSprite_.value());
+    window.draw(p_logic_->renderingSprite_);
 }

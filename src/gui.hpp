@@ -4,6 +4,7 @@
 #include "app_pages/main_menu/menu_page.hpp"
 #include "app_pages/sierpinski/sierpinski_page.hpp"
 #include "app_pages/fern/fern_page.hpp"
+#include "app_pages/regular_polygon/polygon_page.hpp"
 
 namespace vie {
 
@@ -53,9 +54,9 @@ class ApplicationLogic : public Logic {
             currentPage_.reset(new FernPage(this->font_, this));
             break;
         }
-        // case page_type::polygons:
-        //     currentPage_.reset(new PolygonPage(this->font_, this));
-        //     break;
+        case page_type::polygons:
+            currentPage_.reset(new PolygonPage(this->font_, this));
+            break;
         // case page_type::save:
         //     currentPage_.reset(new SavePage(this->font_, this));
         //     break;

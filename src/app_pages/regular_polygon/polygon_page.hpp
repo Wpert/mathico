@@ -1,7 +1,11 @@
 #ifndef POLYGON_PAGE_HPP
 #define POLYGON_PAGE_HPP
 
-#include <logic.hpp>
+#include "../logic.hpp"
+
+namespace {
+    constexpr sf::Color vertexesAreaColor(15, 12, 11, 255);
+}
 
 namespace vie {
 
@@ -11,12 +15,14 @@ private:
 
     void drawPolygon() {
         using namespace vmath;
-        float width = 500;
-        float height = 500;
+        double width = 500;
+        double height = 500;
         // this->editableImage_.create(width, height, sf::Color(0, 0, 0));
-        
-        bool wtf = p_logic_->polygonTexture_.create(width, height);
-        p_logic_->polygonTexture_.clear(vertexesAreaColor);
+        // auto& img = p_logic_->editableImage_ = sf::Image({width, height}, vertexesAreaColor);
+        p_logic_->polygonTexture_ = sf::RenderTexture({
+            static_cast<uint>(width),
+            static_cast<uint>(height)
+        });
 
         int X = std::stoi(textboxes_[0].GetString());
         int Y = std::stoi(textboxes_[1].GetString());
@@ -30,13 +36,13 @@ private:
         Polygon tttPoly = makeRegularPolygon(startPoint, N);
         // calculate(intPoly, startPoint);
 
-        intPoly.ChangePosition({2 * width / 3, height / 2});
-        tttPoly.ChangePosition({2 * width / 3, height / 2});
+        intPoly.ChangePosition({2.0 * width / 3.0, height / 2.0});
+        tttPoly.ChangePosition({2.0 * width / 3.0, height / 2.0});
 
         p_logic_->polygonTexture_.draw(intPoly);
         p_logic_->polygonTexture_.draw(tttPoly);
-
-        p_logic_->renderingSprite_.setTexture(p_logic_->polygonTexture_.getTexture());
+        
+        p_logic_->renderingSprite_ = sf::Sprite(p_logic_->polygonTexture_.getTexture());
         p_logic_->renderingSprite_.setPosition({220, 10});
     }
 
