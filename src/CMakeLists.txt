@@ -24,7 +24,7 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/app_pages
         ${CMAKE_CURRENT_SOURCE_DIR}/app_pages/main_menu
-        ${CMAKE_SOURCE_DIR}/libs/ui/include
-        ${CMAKE_SOURCE_DIR}/libs/ui
-        ${CMAKE_SOURCE_DIR}/libs/math
+        ${CMAKE_SOURCE_DIR}/libs/ui_lib/include
+        # ${CMAKE_SOURCE_DIR}/libs/ui
+        ${CMAKE_SOURCE_DIR}/libs/math/include
 )

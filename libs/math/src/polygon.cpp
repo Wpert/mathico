@@ -1,4 +1,4 @@
-#include "polygon.hpp"
+#include "../include/math/polygon.hpp"
 
 using namespace vmath;
 

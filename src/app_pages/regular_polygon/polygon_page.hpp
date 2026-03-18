@@ -2,7 +2,7 @@
 
 #include <spdlog/spdlog.h>
 
-#include <vmath.hpp>
+#include <math/vmath.hpp>
 #include "../logic.hpp"
 
 namespace {

@@ -14,7 +14,6 @@ add_library(math_lib STATIC
 target_include_directories(math_lib 
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_SOURCE_DIR}  # tcolors.hpp clickable.hpp
 )
 
 target_compile_features(math_lib

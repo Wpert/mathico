@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-#include "gui.hpp"
+#include "app_pages/gui.hpp"
 
 std::string getDirPath() {
     std::string path(__FILE__);

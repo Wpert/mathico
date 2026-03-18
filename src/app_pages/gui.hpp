@@ -2,11 +2,11 @@
 
 #include <spdlog/spdlog.h>
 
-#include "app_pages/main_menu/menu_page.hpp"
-#include "app_pages/sierpinski/sierpinski_page.hpp"
-#include "app_pages/fern/fern_page.hpp"
-#include "app_pages/regular_polygon/polygon_page.hpp"
-#include "app_pages/save_menu/save_page.hpp"
+#include "main_menu/menu_page.hpp"
+#include "sierpinski/sierpinski_page.hpp"
+#include "fern/fern_page.hpp"
+#include "regular_polygon/polygon_page.hpp"
+#include "save_menu/save_page.hpp"
 
 namespace vie {
 
