@@ -5,9 +5,10 @@ find_package(SFML REQUIRED)
 add_executable(${PROJECT_NAME}
     main.cpp
     app_pages/main_menu/menu_page.cpp
+    app_pages/sierpinski/sierpinski_page.cpp
     app_pages/fern/fern_page.cpp
-    # pages/sierpinski_page.cpp
-    # pages/polygon_page.cpp
+    app_pages/regular_polygon/polygon_page.cpp
+    app_pages/save_menu/save_page.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}

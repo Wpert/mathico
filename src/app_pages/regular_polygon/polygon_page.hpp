@@ -1,6 +1,8 @@
 #ifndef POLYGON_PAGE_HPP
 #define POLYGON_PAGE_HPP
 
+#include <vmath.hpp>
+
 #include "../logic.hpp"
 
 namespace {
@@ -15,8 +17,10 @@ private:
 
     void drawPolygon() {
         using namespace vmath;
-        double width = 500;
-        double height = 500;
+        using Point = Polygon::Point;
+
+        float width = 500;
+        float height = 500;
         // this->editableImage_.create(width, height, sf::Color(0, 0, 0));
         // auto& img = p_logic_->editableImage_ = sf::Image({width, height}, vertexesAreaColor);
         p_logic_->polygonTexture_ = sf::RenderTexture({
@@ -36,8 +40,8 @@ private:
         Polygon tttPoly = makeRegularPolygon(startPoint, N);
         // calculate(intPoly, startPoint);
 
-        intPoly.ChangePosition({2.0 * width / 3.0, height / 2.0});
-        tttPoly.ChangePosition({2.0 * width / 3.0, height / 2.0});
+        intPoly.ChangePosition({2.0f * width / 3.0f, height / 2.0f});
+        tttPoly.ChangePosition({2.0f * width / 3.0f, height / 2.0f});
 
         p_logic_->polygonTexture_.draw(intPoly);
         p_logic_->polygonTexture_.draw(tttPoly);
