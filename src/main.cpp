@@ -16,8 +16,9 @@ std::string getDirPath() {
 }
 
 int main() {
-    // Set the log level to "info" and mylogger to "trace":
-    // SPDLOG_LEVEL=info,mylogger=trace && ./example
+    // i don't wanna see it in the main
+    // move it inside application class
+    // and .Configure method, before .Process
     spdlog::cfg::load_env_levels();
 
     spdlog::info("Welcome to spdlog version {}.{}.{}  !",
@@ -25,8 +26,6 @@ int main() {
         SPDLOG_VER_MINOR,
         SPDLOG_VER_PATCH
     );
-
-    // spdlog::warn("Easy padding in numbers like {:08d}", 12);
 
     sf::RenderWindow window(sf::VideoMode({1024, 600}),
                                 "Mathico",
@@ -40,7 +39,7 @@ int main() {
     sf::Font basicFont;
     spdlog::info("dirPath: {}", dirPath);
     bool hasOpened = basicFont.openFromFile(dirPath + "../resources/calibri.ttf");
-
+    // move all the thing upthere
     vie::ApplicationLogic lgck(basicFont, window);
     lgck.Process(window);
 

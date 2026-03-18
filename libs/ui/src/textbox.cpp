@@ -10,9 +10,9 @@ TextBox::TextBox(
     sf::Vector2f size,
     const sf::Font &textboxFont,
     const std::string& descrText
-    ) : descriptionText_(textboxFont, descrText),
-        textInBox_(textboxFont, "")
-    {
+) : descriptionText_(textboxFont, descrText),
+    textInBox_(textboxFont, "")
+{
     {
         this->descriptionText_.setPosition(position);
         this->box_.setSize(size);
@@ -24,12 +24,8 @@ TextBox::TextBox(
     this->box_.setFillColor(defaultButtonColor);
 
     this->textInBox_.setCharacterSize(18);
-    // this->textInBox_.setFont(buttonFont);
-    
     this->descriptionText_.setCharacterSize(18);
-    // this->descriptionText_.setFont(buttonFont);
-    // this->descriptionText_.setString(descrText);
-    
+
     this->inputText_ = "";
 
     this->focus_ = false;

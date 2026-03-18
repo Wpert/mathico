@@ -38,9 +38,7 @@ private:
 
             _prev = std::move(_point);
         }
-        // std::vector<sf::Uint8> imageBuffer;
-        // editableImage_.saveToMemory(imageBuffer, "bmp");
-        // loadingTexture_.loadFromMemory(imageBuffer.data(), imageBuffer.size(), sf::IntRect());
+
         bool isLoadedImage = p_logic_->loadingTexture_.loadFromImage(img);
         if (!isLoadedImage) {
             spdlog::error("Couldn't load image from texture");

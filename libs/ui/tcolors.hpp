@@ -15,8 +15,7 @@ const sf::Color defaultTextColor(200,210,200,255);
 // sliders
 const sf::Color defaultSliderColor(15, 12, 11, 255);
 const sf::Color activeSliderColor(69, 66, 65, 255);
-//const sf::Color defaultOutlineColor(246, 65, 108, 255);
-//const sf::Color activeOutlineColor(sf::Color::Cyan);
+
 const sf::Color defaultOutlineColor(239, 62, 52, 255);
 const sf::Color activeOutlineColor(4, 143, 161, 255);
 
