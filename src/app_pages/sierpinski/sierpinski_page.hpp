@@ -40,7 +40,7 @@ private:
         // std::vector<sf::Uint8> imageBuffer;
         // editableImage_.saveToMemory(imageBuffer, "bmp");
         // loadingTexture_.loadFromMemory(imageBuffer.data(), imageBuffer.size(), sf::IntRect());
-        bool isLoadedImage = p_logic_->loadingTexture_.loadFromImage(p_logic_->editableImage_);
+        bool isLoadedImage = p_logic_->loadingTexture_.loadFromImage(img);
         if (!isLoadedImage) {
             std::cout << "cannot load image" << std::endl;
         }

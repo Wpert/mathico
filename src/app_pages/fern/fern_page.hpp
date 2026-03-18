@@ -1,7 +1,7 @@
 #ifndef FERN_PAGE_HPP
 #define FERN_PAGE_HPP
 
-#include <logic.hpp>
+#include "../logic.hpp"
 #include <vmath.hpp>
 
 namespace vie {
@@ -12,14 +12,14 @@ private:
 
     void drawFern() {
         sf::Color vertexesAreaColor(15, 12, 11, 255);
-        size_t width = 500;
-        size_t height = 500;
-        p_logic_->editableImage_.create(width, height, vertexesAreaColor);
+        uint width = 500;
+        uint height = 500;
+        auto& img = p_logic_->editableImage_; 
+        img = sf::Image({width, height}, vertexesAreaColor);
         
         sf::Vector2f v = {0, 0};
         sf::Vector2f vn = {0, 0};
-        size_t N = sliders_[0].GetNumber();
-
+        uint N = sliders_[0].GetNumber();
 
         for (int i = 0; i < N; ++i) {
             double decideDraw = vmath::rand0_1();
@@ -37,17 +37,26 @@ private:
                 vn = vmath::func_4(v);
             }
 
-            p_logic_->editableImage_.setPixel((int)(vn.x * 80) + 250, 490 - (int)(vn.y * 32), sf::Color::White);
+            auto pos = sf::Vector2u({
+                static_cast<uint>((int)(vn.x * 80) + 250),
+                static_cast<uint>(490 - (int)(vn.y * 32))
+            });
+            img.setPixel(pos, sf::Color::White);
             v = vn;
         }
 
-        // this->loadingTexture_.loadFromImage(editableImage_);
-        // this->renderingSprite_.setTexture(loadingTexture_);
-        
-        p_logic_->loadingTexture_.loadFromImage(p_logic_->editableImage_);
-        p_logic_->renderingSprite_.setTexture(p_logic_->loadingTexture_);
+        auto [len, wid] = p_logic_->loadingTexture_.getSize();
+
+        std::cout << "texture len: " << len << " width: " << wid << std::endl;
+        std::cout << "sprite got set the texture" << std::endl;
+
+        bool isLoadedImage = p_logic_->loadingTexture_.loadFromImage(img);
+        if (!isLoadedImage) {
+            std::cout << "cannot load image" << std::endl;
+        }
+        p_logic_->renderingSprite_ = sf::Sprite(p_logic_->loadingTexture_);
         p_logic_->renderingSprite_.setPosition({220, 10});
-        std::cout << "I've drow a fractal" << std::endl;
+        std::cout << "I've drow a fractal with N = " << N << " points" << std::endl;
     }
 
     class ShowFernButton : public Button {
@@ -65,7 +74,7 @@ private:
         }
         bool CallFunc() const override {
             p_obj_->drawFern();
-            return false;
+            return true;
         }
     };
 

@@ -3,16 +3,16 @@ find_package(SFML REQUIRED)
 # find_package(UILib REQUIRED)
 
 add_executable(${PROJECT_NAME}
-main.cpp
-app_pages/main_menu/menu_page.cpp
-# pages/fern_page.cpp
-# pages/sierpinski_page.cpp
-# pages/polygon_page.cpp
+    main.cpp
+    app_pages/main_menu/menu_page.cpp
+    app_pages/fern/fern_page.cpp
+    # pages/sierpinski_page.cpp
+    # pages/polygon_page.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE SFML::System SFML::Window SFML::Graphics
-    PRIVATE ui_lib
+    PRIVATE ui_lib math_lib
 )
 
 target_include_directories(${PROJECT_NAME}

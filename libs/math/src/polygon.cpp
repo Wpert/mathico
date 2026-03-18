@@ -42,7 +42,7 @@ void Polygon::draw(sf::RenderTarget& target, sf::RenderStates states) const {
                 sf::Vertex(sf::Vector2f(x1, y1)),
                 sf::Vertex(sf::Vector2f(x2, y2))
                 };
-        target.draw(line, 2, sf::Lines);
+        target.draw(line, 2, sf::PrimitiveType::Lines);
     }
 }
 
