@@ -2,7 +2,7 @@
 
 #include <spdlog/spdlog.h>
 
-#include <logic.hpp>
+#include "../logic.hpp"
 
 namespace vie {
 

@@ -16,7 +16,7 @@ add_library(ui_lib STATIC
 target_include_directories(ui_lib 
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_SOURCE_DIR}  # tcolors.hpp clickable.hpp
+        # ${CMAKE_CURRENT_SOURCE_DIR}  # tcolors.hpp clickable.hpp
 )
 
 target_compile_features(ui_lib

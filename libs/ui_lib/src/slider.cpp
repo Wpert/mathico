@@ -1,4 +1,4 @@
-#include "../include/slider.hpp"
+#include "../include/ui_lib/slider.hpp"
 #include "../tcolors.hpp"
 
 #include <cmath>
