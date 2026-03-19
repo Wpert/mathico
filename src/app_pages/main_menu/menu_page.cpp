@@ -2,22 +2,31 @@
 
 using namespace vie;
 
-MenuPage::MenuPage(const sf::Font& font, Logic* p_logic) : PageManager(), p_logic_(p_logic) {
+// emplace or push back
+// std::unique_ptr
+// thats cringe btw
+MenuPage::MenuPage(const sf::Font &font, Logic *p_logic) : PageManager(), m_ptr_logic(p_logic)
+{
     sf::Vector2f buttonSize(200, 30);
-    buttons_.AddUnit(new SelectPageButton({10, 10}, buttonSize, "Sierpinski triangle", font, p_logic_, page_type::sierpinski));
-    buttons_.AddUnit(new SelectPageButton({10, 45}, buttonSize, "Barnsley fern", font, p_logic_, page_type::barn_fern));
-    buttons_.AddUnit(new SelectPageButton({10, 80}, buttonSize, "Polygons", font, p_logic_, page_type::polygons));
-    buttons_.AddUnit(new SelectPageButton({10, 115}, buttonSize, "Save img", font, p_logic_, page_type::save));
+    buttons_.addUnit(
+        new SelectPageButton({10, 10}, buttonSize, "Sierpinski triangle", font, p_logic, page_type::sierpinski));
+    buttons_.addUnit(new SelectPageButton({10, 45}, buttonSize, "Barnsley fern", font, p_logic, page_type::barn_fern));
+    buttons_.addUnit(new SelectPageButton({10, 80}, buttonSize, "Polygons", font, p_logic, page_type::polygons));
+    buttons_.addUnit(new SelectPageButton({10, 115}, buttonSize, "Save img", font, p_logic, page_type::save));
 }
 
-void MenuPage::RenderUnits(sf::RenderWindow& window) {
-    if (!isMainWindowActive_) {
+// this thing is very similar from page to page
+// why do i need to write it ?
+void MenuPage::renderUnits(sf::RenderWindow &window)
+{
+    if (!isMainWindowActive_)
+    {
         return;
     }
 
-    buttons_.Render(window);
-    textboxes_.Render(window);
-    sliders_.Render(window);
+    buttons_.render(window);
+    textboxes_.render(window);
+    sliders_.render(window);
     window.draw(area_);
-    window.draw(p_logic_->renderingSprite_);
+    window.draw(m_ptr_logic->renderingSprite_);
 }

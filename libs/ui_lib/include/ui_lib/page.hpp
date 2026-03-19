@@ -7,73 +7,100 @@
 
 #include <iostream>
 
-namespace vie {
+namespace vie
+{
 
-template<typename ClickableClass>
-class ClickableContainer {
-    std::vector<ClickableClass*> units_;
-public:
-    ClickableContainer() {
+template <typename ClickableClass> class ClickableContainer
+{
+    std::vector<ClickableClass *> units_;
+
+  public:
+    ClickableContainer()
+    {
         // spdlog::debug("Clickable container {} has constructed", this);
     }
 
-    ~ClickableContainer() {
+    ~ClickableContainer()
+    {
         for (size_t i = 0; i < this->units_.size(); ++i)
             delete units_[i];
-        
+
         units_.clear();
 
         // spdlog::debug("Clickable container {} has deleted", this);
     }
 
-    void AddUnit(ClickableClass* element) {
+    void addUnit(ClickableClass *element)
+    {
         units_.push_back(element);
     }
 
-    void TakeInput(const Event &event, sf::RenderWindow& window) {
-        for (auto& element : units_)
+    void takeInput(const Event &event, sf::RenderWindow &window)
+    {
+        for (auto &element : units_)
             element->update(event, window);
     }
 
-    void Render(sf::RenderWindow &window) {
-        for (auto& element : units_) {
+    void render(sf::RenderWindow &window)
+    {
+        for (auto &element : units_)
+        {
             window.draw(*element);
         }
     }
 
-    void Clear() { units_.clear(); }
-    size_t size() { return units_.size(); }
-    std::vector<ClickableClass*>::const_iterator begin() { return units_.begin(); }
-    std::vector<ClickableClass*>::const_iterator end() { return units_.end(); }
+    void clear()
+    {
+        units_.clear();
+    }
+    size_t size()
+    {
+        return units_.size();
+    }
+    std::vector<ClickableClass *>::const_iterator begin()
+    {
+        return units_.begin();
+    }
+    std::vector<ClickableClass *>::const_iterator end()
+    {
+        return units_.end();
+    }
 
-    ClickableClass& operator[](size_t idx) { return *(units_[idx]); }
+    ClickableClass &operator[](size_t idx)
+    {
+        return *(units_[idx]);
+    }
 };
 
-class WorkArea : public sf::Drawable {
+class WorkArea : public sf::Drawable
+{
     sf::RectangleShape area_;
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-public:
-    WorkArea();
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+
+  public:
+    WorkArea() = default;
     WorkArea(sf::Vector2f pos, sf::Vector2f size);
-    void SetSize(sf::Vector2f size);
-    void SetColor(sf::Color clr);
+    void setSize(sf::Vector2f size);
+    void setColor(sf::Color clr);
 };
 
-class PageManager {
-protected:
+class PageManager
+{
+  protected:
     bool isMainWindowActive_ = true;
     WorkArea area_;
     ClickableContainer<Button> buttons_;
     ClickableContainer<TextBox> textboxes_;
     ClickableContainer<Slider> sliders_;
-public:
+
+  public:
     PageManager();
     virtual ~PageManager();
-    virtual void RenderUnits(sf::RenderWindow& window) = 0;
-    void TakeInputs(sf::RenderWindow& window);
-    void ClearPage();
+    virtual void renderUnits(sf::RenderWindow &window) = 0;
+    void takeInputs(sf::RenderWindow &window);
+    void clearPage();
 };
 
-}
+} // namespace vie
 
 #endif

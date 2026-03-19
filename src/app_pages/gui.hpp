@@ -2,22 +2,22 @@
 
 #include <spdlog/spdlog.h>
 
-#include "main_menu/menu_page.hpp"
-#include "sierpinski/sierpinski_page.hpp"
 #include "fern/fern_page.hpp"
+#include "main_menu/menu_page.hpp"
 #include "regular_polygon/polygon_page.hpp"
 #include "save_menu/save_page.hpp"
+#include "sierpinski/sierpinski_page.hpp"
 
-namespace vie {
+namespace vie
+{
 
 const sf::Color backgroundColor(22, 19, 18, 255);
 
-class ApplicationLogic : public Logic {
-    public:
-    ApplicationLogic(
-        const sf::Font& font,
-        sf::RenderWindow &window
-    ) : Logic(font, window, new MenuPage(font, this)) {
+class ApplicationLogic : public Logic
+{
+  public:
+    ApplicationLogic(const sf::Font &font, sf::RenderWindow &window) : Logic(font, window, new MenuPage(font, this))
+    {
         sf::Color vertexesAreaColor(15, 12, 11, 255);
         uint width = 500;
         uint height = 500;
@@ -25,54 +25,57 @@ class ApplicationLogic : public Logic {
 
         spdlog::debug("ApplicationLogic has constructed");
     }
-    ~ApplicationLogic() {
+    ~ApplicationLogic() override
+    {
         spdlog::debug("ApplicationLogic has destructed");
     }
 
-    void Process(sf::RenderWindow& window) override {
-        while (window.isOpen()) {
-            currentPage_->TakeInputs(window); 
+    void process(sf::RenderWindow &window) override
+    {
+        while (window.isOpen())
+        {
+            currentPage_->takeInputs(window);
 
             window.clear(backgroundColor);
-            currentPage_->RenderUnits(window);\
+            currentPage_->renderUnits(window);
             window.display();
         }
         window.close();
     }
 
-    void selectPage(page_type page) override {
+    void selectPage(page_type page) override
+    {
         switch (page)
         {
         case page_type::main: {
             spdlog::info("Selected MenuPage");
-            currentPage_.reset(new MenuPage(this->font_, this));
+            currentPage_ = std::make_unique<MenuPage>(font_, this);
             break;
         }
         case page_type::sierpinski: {
             spdlog::info("Selected SierpinskiPage");
-            currentPage_.reset(new SierpinskiPage(this->font_, this));
+            currentPage_ = std::make_unique<SierpinskiPage>(font_, this);
             break;
         }
         case page_type::barn_fern: {
             spdlog::info("Selected FernPage");
-            currentPage_.reset(new FernPage(this->font_, this));
+            currentPage_ = std::make_unique<FernPage>(font_, this);
             break;
         }
         case page_type::polygons: {
             spdlog::info("Selected PolygonPage");
-            currentPage_.reset(new PolygonPage(this->font_, this));
+            currentPage_ = std::make_unique<PolygonPage>(font_, this);
             break;
         }
         case page_type::save: {
             spdlog::info("Selected SavePage");
-            currentPage_.reset(new SavePage(this->font_, this));
+            currentPage_ = std::make_unique<SavePage>(font_, this);
             break;
         }
         default:
             break;
         }
     }
-
 };
 
-}
+} // namespace vie

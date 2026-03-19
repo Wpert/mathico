@@ -6,13 +6,9 @@
 
 using namespace vie;
 
-Button::Button(
-    sf::Vector2f position,
-    sf::Vector2f size,
-    std::string text,
-    const sf::Font &buttonFont
-    ) : text_(buttonFont, text) 
-    {
+Button::Button(sf::Vector2f position, sf::Vector2f size, std::string text, const sf::Font &buttonFont)
+    : text_(buttonFont, text)
+{
     this->box_.setSize(size);
 
     {
@@ -30,48 +26,55 @@ Button::Button(
     // this->text_.setString(text);
 }
 
-bool Button::Contains(sf::Vector2i &mousePosition) const {
+bool Button::contains(sf::Vector2i &mousePosition) const
+{
     auto tempPosition = static_cast<sf::Vector2f>(mousePosition);
-    return this->box_.getGlobalBounds().contains(tempPosition);
+    return box_.getGlobalBounds().contains(tempPosition);
 }
 
-void Button::update(const Event& e, sf::RenderWindow& window) {
+void Button::update(const Event &e, sf::RenderWindow &window)
+{
     assert(e.has_value() && "I recieved nullopt event");
 
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    bool isMouseOnButton = this->Contains(mousePosition);
+    bool isMouseOnButton = contains(mousePosition);
 
-    if (state_ != ButtonState::CLICKED) {
-        if (isMouseOnButton) {
+    if (state_ != ButtonState::CLICKED)
+    {
+        if (isMouseOnButton)
+        {
             state_ = ButtonState::ACTIVE;
         }
-        else {
+        else
+        {
             state_ = ButtonState::OFFLINE;
         }
     }
     // i can rewrite it to a func isLeftMouseButtonPressed()
-    auto* mouseBtnPressed = e->getIf<sf::Event::MouseButtonPressed>();
-    if (e->is<sf::Event::MouseButtonPressed>() &&
-        mouseBtnPressed != nullptr && 
-        mouseBtnPressed->button == sf::Mouse::Button::Left
-    ) {
-        if (isMouseOnButton) {
+    auto *mouseBtnPressed = e->getIf<sf::Event::MouseButtonPressed>();
+    if (e->is<sf::Event::MouseButtonPressed>() && mouseBtnPressed != nullptr &&
+        mouseBtnPressed->button == sf::Mouse::Button::Left)
+    {
+        if (isMouseOnButton)
+        {
             state_ = ButtonState::CLICKED;
         }
-        else {
+        else
+        {
             state_ = ButtonState::OFFLINE;
         }
     }
 
-    auto* mouseBtnReleased = e->getIf<sf::Event::MouseButtonReleased>();
-    if (e->is<sf::Event::MouseButtonReleased>() &&
-        mouseBtnReleased != nullptr && 
-        mouseBtnReleased->button == sf::Mouse::Button::Left
-    ) {
-        if (isMouseOnButton) {
+    auto *mouseBtnReleased = e->getIf<sf::Event::MouseButtonReleased>();
+    if (e->is<sf::Event::MouseButtonReleased>() && mouseBtnReleased != nullptr &&
+        mouseBtnReleased->button == sf::Mouse::Button::Left)
+    {
+        if (isMouseOnButton)
+        {
             state_ = ButtonState::ACTIVE;
         }
-        else {
+        else
+        {
             state_ = ButtonState::OFFLINE;
         }
     }
@@ -90,7 +93,8 @@ void Button::update(const Event& e, sf::RenderWindow& window) {
     }
 }
 
-void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
     target.draw(this->box_, states);
     target.draw(this->text_, states);
 }

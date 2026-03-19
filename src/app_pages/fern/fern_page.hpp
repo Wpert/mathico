@@ -2,20 +2,28 @@
 
 #include <spdlog/spdlog.h>
 
-#include <math/vmath.hpp>
 #include "../logic.hpp"
+#include <math/vmath.hpp>
 
-namespace vie {
+namespace vie
+{
 
-class FernPage : public PageManager {
-private:
-    Logic* p_logic_;
+class FernPage : public PageManager
+{
+  private:
+    Logic *p_logic_;
 
-public:
-    FernPage(const sf::Font& font, Logic* p_logic);
-    ~FernPage() = default;
+  public:
+    FernPage() = delete;
+    FernPage(const sf::Font &font, Logic *p_logic);
+    FernPage(const FernPage &) = default;
+    FernPage(FernPage &&) = default;
+    ~FernPage() override = default;
 
-    void RenderUnits(sf::RenderWindow& window) override;
+    FernPage &operator=(const FernPage &) = default;
+    FernPage &operator=(FernPage &&) = default;
+
+    void renderUnits(sf::RenderWindow &window) override;
 };
 
-}
+} // namespace vie

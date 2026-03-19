@@ -5,29 +5,32 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <iostream>
-#include <vector>
 #include <cmath>
-#include <utility>
 #include <concepts>
+#include <iostream>
+#include <utility>
+#include <vector>
 
-namespace vmath {
+namespace vmath
+{
 
-template<typename T>
+template <typename T>
 concept Number = std::is_arithmetic<T>::value;
 
-class Polygon : public sf::Drawable {
-public:
-    class Point {
+class Polygon : public sf::Drawable
+{
+  public:
+    class Point
+    {
         // собственный велосипед комплексных чисел с прилегающей им логикой
-    private:
+      private:
         double x_;
         double y_;
-    public:
+
+      public:
         Point();
         Point(double x, double y);
-        template<Number T>
-        Point(sf::Vector2<T> v);
+        template <Number T> Point(sf::Vector2<T> v);
         Point(sf::Vector2f v);
         Point(Point &other) = default;
         Point(const Point &other) = default;
@@ -37,24 +40,24 @@ public:
         [[nodiscard]] double GetY() const;
         [[nodiscard]] std::pair<double, double> GetPosition() const;
 
-        Point operator !() const;
+        Point operator!() const;
 
-        Point operator + (const Point &other) const;
-        Point operator - (const Point &other) const;
-        Point operator * (const Point &other) const;
-        Point operator / (const Point &other) const;
-        Point operator / (double number) const;
-        Point operator * (double number) const;
+        Point operator+(const Point &other) const;
+        Point operator-(const Point &other) const;
+        Point operator*(const Point &other) const;
+        Point operator/(const Point &other) const;
+        Point operator/(double number) const;
+        Point operator*(double number) const;
 
-        Point operator += (const Point &other);
-        Point operator -= (const Point &other);
-        Point operator *= (const Point &other);
-        Point operator /= (const Point &other);
-        Point operator /= (double number);
-        Point operator *= (double number);
+        Point operator+=(const Point &other);
+        Point operator-=(const Point &other);
+        Point operator*=(const Point &other);
+        Point operator/=(const Point &other);
+        Point operator/=(double number);
+        Point operator*=(double number);
 
-        bool operator == (const Point &other) const;
-        bool operator != (const Point &other) const;
+        bool operator==(const Point &other) const;
+        bool operator!=(const Point &other) const;
 
         // phi in radians
         void Rotate(double phi);
@@ -64,19 +67,19 @@ public:
     explicit Polygon(size_t size);
     ~Polygon() = default;
 
-    [[nodiscard]] const size_t Size() const;
+    [[nodiscard]] const size_t size() const;
 
-    Point& operator [] (size_t i);
-    void ChangePosition(sf::Vector2f v);
-    void ConsolePrint();
+    Point &operator[](size_t i);
+    void changePosition(sf::Vector2f v);
+    void consolePrint();
     // void Render(sf::RenderWindow &mainWindow);
     // void update(sf::Event& e, sf::RenderWindow& window);
 
-private:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+  private:
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     std::vector<Point> vertexes_;
 };
 
-}
+} // namespace vmath
 
 #endif
