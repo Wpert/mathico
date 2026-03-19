@@ -5,29 +5,29 @@
 #include <cmath>
 #include <iomanip>
 
-namespace vmath {
+namespace vmath
+{
 
-    using Point = Polygon::Point;
+using Point = Polygon::Point;
 
-    void calculate(Polygon &printable, Point core_point);
+void calculate(Polygon &printable, Point core_point);
 
-    double euclide_distance(const Point &a, const Point &b);
+double euclide_distance(const Point &a, const Point &b);
 
-    Polygon::Point zerothFourierCoeff(Polygon &poly);
-    Polygon::Point firstFourierCoeff(Polygon &poly);
+Polygon::Point zerothFourierCoeff(Polygon &poly);
+Polygon::Point firstFourierCoeff(Polygon &poly);
 
-    Polygon makeRegularPolygon(Point &point, size_t size);
-    Polygon makeIntPolygon(Point &point, size_t size);
+Polygon makeRegularPolygon(Point &point, size_t size);
+Polygon makeIntPolygon(Point &point, size_t size);
 
-    double calculateEpsilon(Polygon &poly);
+double calculateEpsilon(Polygon &poly);
 
-    sf::Vector2f func_1(sf::Vector2f v);
-    sf::Vector2f func_2(sf::Vector2f v);
-    sf::Vector2f func_3(sf::Vector2f v);
-    sf::Vector2f func_4(sf::Vector2f v);
+sf::Vector2f func_1(sf::Vector2f v);
+sf::Vector2f func_2(sf::Vector2f v);
+sf::Vector2f func_3(sf::Vector2f v);
+sf::Vector2f func_4(sf::Vector2f v);
 
-    double rand0_1();
-}
-
+double rand0_1();
+} // namespace vmath
 
 #endif

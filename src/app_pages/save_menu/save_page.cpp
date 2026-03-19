@@ -2,28 +2,27 @@
 
 using namespace vie;
 
-SavePage::SavePage(
-    const sf::Font& font,
-    Logic* p_logic
-) : PageManager(),
-    p_logic_(p_logic)
+SavePage::SavePage(const sf::Font &font, Logic *p_logic) : PageManager(), m_ptr_logic(p_logic)
 {
     sf::Vector2f position({10, 10});
     sf::Vector2f buttonSize(200, 30);
 
-    textboxes_.AddUnit(new TextBox({10, 10}, buttonSize, font, "Enter filename"));
+    textboxes_.addUnit(new TextBox({10, 10}, buttonSize, font, "Enter filename"));
 
-    buttons_.AddUnit(new SaveImageButton({10, 80}, buttonSize, "Save image", font, this, p_logic_));
-    buttons_.AddUnit(new SelectPageButton({10, 200}, buttonSize, "Back to menu", font, p_logic_, page_type::main));
+    buttons_.addUnit(new SaveImageButton({10, 80}, buttonSize, "Save image", font, this, m_ptr_logic));
+    buttons_.addUnit(new SelectPageButton({10, 200}, buttonSize, "Back to menu", font, m_ptr_logic, page_type::main));
 }
 
-void SavePage::RenderUnits(sf::RenderWindow& window) {
+void SavePage::renderUnits(sf::RenderWindow &window)
+{
     if (!isMainWindowActive_)
+    {
         return;
+    }
 
-    buttons_.Render(window);
-    textboxes_.Render(window);
-    sliders_.Render(window);
+    buttons_.render(window);
+    textboxes_.render(window);
+    sliders_.render(window);
     window.draw(area_);
-    window.draw(p_logic_->renderingSprite_);
+    window.draw(m_ptr_logic->renderingSprite_);
 }

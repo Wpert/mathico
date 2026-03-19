@@ -5,13 +5,8 @@
 
 using namespace vie;
 
-TextBox::TextBox(
-    sf::Vector2f position,
-    sf::Vector2f size,
-    const sf::Font &textboxFont,
-    const std::string& descrText
-) : descriptionText_(textboxFont, descrText),
-    textInBox_(textboxFont, "")
+TextBox::TextBox(sf::Vector2f position, sf::Vector2f size, const sf::Font &textboxFont, const std::string &descrText)
+    : descriptionText_(textboxFont, descrText), textInBox_(textboxFont, "")
 {
     {
         this->descriptionText_.setPosition(position);
@@ -31,65 +26,72 @@ TextBox::TextBox(
     this->focus_ = false;
 }
 
-TextBox::~TextBox() { }
+TextBox::~TextBox()
+{
+}
 
-bool TextBox::Contains(sf::Vector2i &mousePosition) {
+bool TextBox::Contains(sf::Vector2i &mousePosition)
+{
     auto tempPosition = static_cast<sf::Vector2f>(mousePosition);
     return this->box_.getGlobalBounds().contains(tempPosition);
 }
 
-void TextBox::update(const Event& e, sf::RenderWindow& window) {
+void TextBox::update(const Event &e, sf::RenderWindow &window)
+{
     assert(e.has_value());
 
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
     bool isMouseOnTextbox = this->Contains(mousePosition);
 
     if (e->is<sf::Event::MouseButtonPressed>() &&
-        e->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Left) {
-        if (isMouseOnTextbox) {
+        e->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Left)
+    {
+        if (isMouseOnTextbox)
+        {
             this->focus_ = true;
             this->box_.setFillColor(activeButtonColor);
         }
-        else {
+        else
+        {
             this->focus_ = false;
             this->box_.setFillColor(defaultButtonColor);
         }
     }
 
-    if (e->is<sf::Event::KeyPressed>() && this->focus_) {
+    if (e->is<sf::Event::KeyPressed>() && this->focus_)
+    {
         auto keyCode = e->getIf<sf::Event::KeyPressed>()->code;
-        if (
-            !this->inputText_.empty() &&
-            keyCode == sf::Keyboard::Key::Backspace
-        ) {
+        if (!this->inputText_.empty() && keyCode == sf::Keyboard::Key::Backspace)
+        {
             this->inputText_.pop_back();
         }
-        if (keyCode == sf::Keyboard::Key::Enter) {
+        if (keyCode == sf::Keyboard::Key::Enter)
+        {
             this->focus_ = false;
             this->box_.setFillColor(defaultButtonColor);
         }
     }
 
-    if (
-        e->is<sf::Event::TextEntered>() &&
-        this->inputText_.size() < 20
-    ) {
+    if (e->is<sf::Event::TextEntered>() && this->inputText_.size() < 20)
+    {
         auto rawInput = e->getIf<sf::Event::TextEntered>()->unicode;
-        if (std::isprint(rawInput) && this->focus_) {
-                this->inputText_ += (char)(rawInput);
+        if (std::isprint(rawInput) && this->focus_)
+        {
+            this->inputText_ += (char)(rawInput);
         }
 
         this->textInBox_.setString(this->inputText_);
     }
 }
 
-void TextBox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
     target.draw(this->descriptionText_, states);
     target.draw(this->box_, states);
     target.draw(this->textInBox_, states);
 }
 
-
-std::string TextBox::GetString() {
+std::string TextBox::GetString()
+{
     return this->inputText_;
 }
