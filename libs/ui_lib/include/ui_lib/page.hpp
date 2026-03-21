@@ -6,13 +6,15 @@
 #include "./textbox.hpp"
 
 #include <iostream>
+#include <memory>
 
 namespace vie
 {
 
 template <typename ClickableClass> class ClickableContainer
 {
-    std::vector<ClickableClass *> units_;
+    using clickClassPtr = std::shared_ptr<ClickableClass>;
+    std::vector<clickClassPtr> units_;
 
   public:
     ClickableContainer()
@@ -20,25 +22,29 @@ template <typename ClickableClass> class ClickableContainer
         // spdlog::debug("Clickable container {} has constructed", this);
     }
 
+    ClickableContainer(const ClickableContainer &) = default;
+    ClickableContainer(ClickableContainer &&) = default;
+
     ~ClickableContainer()
     {
-        for (size_t i = 0; i < this->units_.size(); ++i)
-            delete units_[i];
-
-        units_.clear();
-
         // spdlog::debug("Clickable container {} has deleted", this);
     }
 
-    void addUnit(ClickableClass *element)
+    ClickableContainer &operator=(const ClickableContainer &) = default;
+    ClickableContainer &operator=(ClickableContainer &&) = default;
+
+    void addUnit(clickClassPtr &&element)
     {
         units_.push_back(element);
     }
 
     void takeInput(const Event &event, sf::RenderWindow &window)
     {
-        for (auto &element : units_)
+        for (const auto &element : units_)
+        {
+            assert(element.get() && "abcd");
             element->update(event, window);
+        }
     }
 
     void render(sf::RenderWindow &window)
@@ -57,11 +63,11 @@ template <typename ClickableClass> class ClickableContainer
     {
         return units_.size();
     }
-    std::vector<ClickableClass *>::const_iterator begin()
+    std::vector<clickClassPtr>::const_iterator begin()
     {
         return units_.begin();
     }
-    std::vector<ClickableClass *>::const_iterator end()
+    std::vector<clickClassPtr>::const_iterator end()
     {
         return units_.end();
     }

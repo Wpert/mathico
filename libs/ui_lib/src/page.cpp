@@ -60,13 +60,16 @@ void PageManager::takeInputs(sf::RenderWindow &window)
             e->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Left)
         {
             // define which button has clicked
-            for (auto &button : buttons_)
+            for (const auto &button : buttons_)
+            {
+                assert(button.get() && "nullptr");
                 if (button->contains(mousePosition))
                 {
                     bool exitFlag = button->callFunc();
                     if (exitFlag)
                         break;
                 }
+            }
         }
 
         if (e->is<sf::Event::FocusLost>())

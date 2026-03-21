@@ -83,7 +83,7 @@ class ShowFernButton : public Button
     bool callFunc() const override
     {
         drawFern(img_, sprite_, texture_, slider_.GetNumber());
-        return true;
+        return false;
     }
 };
 
@@ -98,10 +98,12 @@ FernPage::FernPage(const sf::Font &font, Logic *p_logic) : PageManager(), p_logi
     auto &sprite = p_logic_->renderingSprite_;
     auto &texture = p_logic_->loadingTexture_;
 
-    sliders_.addUnit(new vie::Slider({10, 45}, {210, 45}, 0, 10000, 25, font));
+    sliders_.addUnit(std::make_shared<vie::Slider>(sf::Vector2f{10, 45}, sf::Vector2f{210, 45}, 0, 10000, 25, font));
 
-    buttons_.addUnit(new SelectPageButton({10, 200}, buttonSize, "Back to menu", font, p_logic_, page_type::main));
-    buttons_.addUnit(new ShowFernButton(position, buttonSize, "Draw fern", font, img, sprite, texture, sliders_[0]));
+    buttons_.addUnit(
+        std::make_shared<ShowFernButton>(position, buttonSize, "Draw fern", font, img, sprite, texture, sliders_[0]));
+    buttons_.addUnit(std::make_shared<SelectPageButton>(sf::Vector2f{10, 200}, buttonSize, "Back to menu", font,
+                                                        p_logic_, page_type::main));
 
     spdlog::info("FernPage has constructed");
 }

@@ -7,12 +7,13 @@ PolygonPage::PolygonPage(const sf::Font &font, Logic *p_logic) : PageManager(), 
     sf::Vector2f position({10, 220});
     sf::Vector2f buttonSize(200, 30);
 
-    textboxes_.addUnit(new TextBox({10, 10}, buttonSize, font, "Enter X position"));
-    textboxes_.addUnit(new TextBox({10, 80}, buttonSize, font, "Enter Y position"));
-    textboxes_.addUnit(new TextBox({10, 150}, buttonSize, font, "Enter N"));
+    textboxes_.addUnit(std::make_shared<TextBox>(sf::Vector2f{10, 10}, buttonSize, font, "Enter X position"));
+    textboxes_.addUnit(std::make_shared<TextBox>(sf::Vector2f{10, 80}, buttonSize, font, "Enter Y position"));
+    textboxes_.addUnit(std::make_shared<TextBox>(sf::Vector2f{10, 150}, buttonSize, font, "Enter N"));
 
-    buttons_.addUnit(new ShowPolygonButton(position, buttonSize, "Draw Polygon", font, this));
-    buttons_.addUnit(new SelectPageButton({10, 255}, buttonSize, "Back to menu", font, m_ptr_logic, page_type::main));
+    buttons_.addUnit(std::make_shared<ShowPolygonButton>(position, buttonSize, "Draw Polygon", font, this));
+    buttons_.addUnit(std::make_shared<SelectPageButton>(sf::Vector2f{10, 255}, buttonSize, "Back to menu", font,
+                                                        m_ptr_logic, page_type::main));
 }
 
 void PolygonPage::renderUnits(sf::RenderWindow &window)

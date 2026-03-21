@@ -34,11 +34,11 @@ class ApplicationLogic : public Logic
     {
         while (window.isOpen())
         {
-            currentPage_->takeInputs(window);
-
             window.clear(backgroundColor);
             currentPage_->renderUnits(window);
             window.display();
+
+            currentPage_->takeInputs(window);
         }
         window.close();
     }

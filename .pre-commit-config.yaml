@@ -5,5 +5,6 @@ repos:
     hooks:
       - id: clang-format
         args: [--style=Microsoft]
+        entry: clang-format -i
       # - id: clang-tidy
       #   args: [--checks=modernize-*,performance-*,readability-*,portability-*, --warnings-as-errors=*]

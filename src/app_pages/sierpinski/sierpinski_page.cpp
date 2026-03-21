@@ -8,9 +8,10 @@ SierpinskiPage::SierpinskiPage(const sf::Font &font, Logic *p_logic) : PageManag
 
     sf::Vector2f position({10, 10});
     sf::Vector2f buttonSize(200, 30);
-    buttons_.addUnit(new ShowTriangleButton(position, buttonSize, "Draw triangle", font, this));
-    buttons_.addUnit(new SelectPageButton({10, 200}, buttonSize, "Back to menu", font, m_ptr_logic, page_type::main));
-    sliders_.addUnit(new vie::Slider({10, 45}, {210, 45}, 0, 10000, 25, font));
+    buttons_.addUnit(std::make_shared<ShowTriangleButton>(position, buttonSize, "Draw triangle", font, this));
+    buttons_.addUnit(std::make_shared<SelectPageButton>(sf::Vector2f{10, 200}, buttonSize, "Back to menu", font,
+                                                        m_ptr_logic, page_type::main));
+    sliders_.addUnit(std::make_shared<vie::Slider>(sf::Vector2f{10, 45}, sf::Vector2f{210, 45}, 0, 10000, 25, font));
 }
 
 void SierpinskiPage::renderUnits(sf::RenderWindow &window)

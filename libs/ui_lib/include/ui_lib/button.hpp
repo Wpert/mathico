@@ -25,7 +25,7 @@ class Button : public Clickable
     sf::Text text_;
     short state_ = ButtonState::OFFLINE;
 
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
   public:
     Button(sf::Vector2f position, sf::Vector2f size, std::string text, const sf::Font &buttonFont);
@@ -35,7 +35,7 @@ class Button : public Clickable
 
     virtual bool callFunc() const = 0;
 
-    bool contains(sf::Vector2i &mousePosition) const;
+    bool contains(const sf::Vector2i &mousePosition) const;
     void update(const Event &e, sf::RenderWindow &window) override;
 };
 
